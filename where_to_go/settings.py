@@ -126,6 +126,8 @@ USE_TZ = True
 
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
 
+MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
 
 # Default primary key field type

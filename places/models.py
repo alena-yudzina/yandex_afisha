@@ -45,7 +45,9 @@ class Image(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
-    photo = models.ImageField()
+    photo = models.ImageField(
+        upload_to='media'
+    )
 
 
     def __str__(self):
