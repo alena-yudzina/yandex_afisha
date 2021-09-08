@@ -30,3 +30,23 @@ class Place(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+
+class Image(models.Model):
+    name = models.CharField(
+        max_length=200,
+        verbose_name='Название'
+        )
+    place = models.ForeignKey(
+        Place,
+        related_name='images',
+        verbose_name='Место',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    photo = models.ImageField()
+
+
+    def __str__(self):
+        return f'{self.id} {self.name}'
