@@ -2,9 +2,19 @@ from django.db import models
 
 
 class Place(models.Model):
+    placeId = models.CharField(
+        max_length=200,
+        verbose_name='Уникальный идентификатор локации',
+        blank=True
+        )
     title = models.CharField(
         max_length=200,
         verbose_name='Название'
+        )
+    short_title = models.CharField(
+        max_length=200,
+        verbose_name='Короткое название',
+        blank=True
         )
     description_short = models.TextField(
         blank=True,
@@ -25,6 +35,11 @@ class Place(models.Model):
         max_digits=16,
         decimal_places=14,
         verbose_name='Широта'
+        )
+    detailsUrl = models.CharField(
+        max_length=200,
+        verbose_name='Путь к json-описанию',
+        blank=True
         )
 
 
