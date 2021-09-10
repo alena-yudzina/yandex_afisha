@@ -36,11 +36,11 @@ class Place(models.Model):
         decimal_places=14,
         verbose_name='Широта'
         )
-    detailsUrl = models.CharField(
-        max_length=200,
-        verbose_name='Путь к json-описанию',
-        blank=True
-        )
+    details = models.FileField(
+        verbose_name='json-описание',
+        null=True,
+        upload_to='media'
+    )
 
 
     def __str__(self):

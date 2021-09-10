@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404, render
 from django.template import loader
-
 from places.models import Place
+import json
 
 
 def show_index(request):
@@ -26,3 +28,14 @@ def show_index(request):
         "features": places_description
     }
     return render(request, 'index.html', context={'geojson': geojson})
+
+
+def show_place(request, post_id):
+    place = get_object_or_404(Place, id=post_id)
+    with open(str(place.details.file)) as f:
+      place_details = f.read()
+    return JsonResponse(
+      json.loads(place_details),
+      safe=False,
+      json_dumps_params={'ensure_ascii': False, 'indent': 2}
+      )
