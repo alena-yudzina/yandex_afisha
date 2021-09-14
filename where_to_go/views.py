@@ -10,10 +10,24 @@ from places.models import Place
 
 
 def get_json(request, post_id):
-    place = get_object_or_404(Place, id=post_id)
-    with open(str(place.details.file)) as f:
-      place_details = f.read()
-    return JsonResponse(json.loads(place_details), safe=False, json_dumps_params={'ensure_ascii': False, 'indent': 2})
+    place_queryset = Place.objects.prefetch_related('images')
+    place = get_object_or_404(place_queryset, id=post_id)
+    return JsonResponse(
+        data={
+            'title': place.title,
+            'imgs': [image.photo.url for image in place.images.all()],
+            'description_short': place.description_short,
+            'description_long': place.description_long,
+            'coordinates': {
+                'lat': place.coordinates_lat,
+                'lng': place.coordinates_lng
+            }
+        },
+        json_dumps_params={
+            'ensure_ascii': False,
+            'indent': 2
+        }
+    )
 
 
 def show_index(request):
@@ -31,7 +45,8 @@ def show_index(request):
             "placeId": place.placeId,
             "detailsUrl": reverse(get_json, args=[place.id])
           }
-        })
+        }
+        )
     geojson = {
         "type": "FeatureCollection",
         "features": places_description
