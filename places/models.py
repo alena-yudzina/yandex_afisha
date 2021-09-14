@@ -63,7 +63,16 @@ class Image(models.Model):
     photo = models.ImageField(
         upload_to='media'
     )
+    position = models.PositiveIntegerField(
+        default=0,
+        blank=False, 
+        null=False,
+        verbose_name='Позиция',
+    )
+
+    class Meta:
+        ordering = ['position',]
 
 
     def __str__(self):
-        return f'{self.id} {self.name}'
+        return f'{self.position} {self.name}'
