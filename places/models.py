@@ -50,7 +50,8 @@ class Place(models.Model):
 class Image(models.Model):
     name = models.CharField(
         max_length=200,
-        verbose_name='Название'
+        verbose_name='Название',
+        blank=True,
         )
     place = models.ForeignKey(
         Place,
@@ -62,6 +63,7 @@ class Image(models.Model):
     )
     photo = models.ImageField(
         verbose_name='Фото',
+        null=True,
     )
     position = models.PositiveIntegerField(
         default=0,
