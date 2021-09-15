@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = env.str("STATIC_ROOT",
                       default=BASE_DIR.joinpath('static').as_posix())
 
-STATICFILES_DIRS = ['/static/'
+STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
