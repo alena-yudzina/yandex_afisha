@@ -1,10 +1,5 @@
-import json
-
-from django.conf import settings
-from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.shortcuts import get_object_or_404, render
-from django.template import loader
 from django.urls import reverse
 from places.models import Place
 
