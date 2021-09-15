@@ -40,7 +40,6 @@ class Place(models.Model):
     details = models.FileField(
         verbose_name='json-описание',
         null=True,
-        upload_to='media'
     )
 
 
@@ -62,7 +61,7 @@ class Image(models.Model):
         on_delete=models.SET_NULL,
     )
     photo = models.ImageField(
-        upload_to='media'
+        verbose_name='Фото',
     )
     position = models.PositiveIntegerField(
         default=0,
