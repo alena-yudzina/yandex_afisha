@@ -15,13 +15,16 @@ class Command(BaseCommand):
         response.raise_for_status()
         place_description = response.json()
         place_json = ContentFile(response.content)
-        place, created = Place.objects.get_or_create(
+        place, created = Place.objects.update_or_create(
             title=place_description['title'],
-            short_title=place_description['title'],
-            description_short=place_description['description_short'],
-            description_long=place_description['description_long'],
-            coordinates_lng=place_description['coordinates']['lng'],
-            coordinates_lat=place_description['coordinates']['lat'],
+            defaults={
+                'title': place_description['title'],
+                'short_title': place_description['title'],
+                'description_short': place_description['description_short'],
+                'description_long': place_description['description_long'],
+                'coordinates_lng': place_description['coordinates']['lng'],
+                'coordinates_lat': place_description['coordinates']['lat'],
+            }
         )
         place.details.save(response.url, place_json, save=True)
         for position, img_link in enumerate(place_description['imgs']):
