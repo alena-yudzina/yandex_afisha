@@ -3,11 +3,6 @@ from tinymce.models import HTMLField
 
 
 class Place(models.Model):
-    placeId = models.CharField(
-        max_length=200,
-        verbose_name='Уникальный идентификатор локации',
-        blank=True
-        )
     title = models.CharField(
         max_length=200,
         verbose_name='Название'

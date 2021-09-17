@@ -37,7 +37,7 @@ def show_index(request):
           },
           "properties": {
             "title": place.short_title,
-            "placeId": place.placeId,
+            "placeId": place.short_title,
             "detailsUrl": reverse(get_json, args=[place.id])
           }
         }
