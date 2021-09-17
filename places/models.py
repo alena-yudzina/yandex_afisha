@@ -21,13 +21,11 @@ class Place(models.Model):
         verbose_name='Длинное описание'
         )
     coordinates_lng = models.DecimalField(
-        null=True,
         max_digits=16,
         decimal_places=14,
         verbose_name='Долгота'
         )
     coordinates_lat = models.DecimalField(
-        null=True,
         max_digits=16,
         decimal_places=14,
         verbose_name='Широта'
