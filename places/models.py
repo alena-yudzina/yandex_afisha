@@ -49,18 +49,13 @@ class Image(models.Model):
         Place,
         related_name='images',
         verbose_name='Место',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
     )
     photo = models.ImageField(
         verbose_name='Фото',
-        null=True,
     )
     position = models.PositiveIntegerField(
         default=0,
-        blank=False,
-        null=False,
         verbose_name='Позиция',
     )
 
