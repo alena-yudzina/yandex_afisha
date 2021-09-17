@@ -13,11 +13,12 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 
     def get_preview(self, obj):
         return format_html(
-            '<img src="{url}" max-height = 200px width = 200 />',
+            '<img src="{url}" style="max-height:200px;width:200px" />',
             url=obj.photo.url,
         )
 
 
+@admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     inlines = [
         ImageInline,
@@ -25,4 +26,3 @@ class PlaceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Image)
-admin.site.register(Place, PlaceAdmin)
